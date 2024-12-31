@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        
+        <div class="game-mode-selector">
+            <button class="mode-button {% if game_mode == 'player' %}active{% endif %}" data-mode="player">Player vs Player</button>
+            <button class="mode-button {% if game_mode == 'computer' %}active{% endif %}" data-mode="computer">Player vs Computer</button>
+        </div>
+
+        <div class="game-info">
+            <div id="status" class="status">Current Player: <span id="current-player">{{ current_player }}</span></div>
+        </div>
+        
+        <div class="board" id="board">
+            {% for i in range(9) %}
+            <div class="cell" data-index="{{ i }}">{{ board[i] }}</div>
+            {% endfor %}
+        </div>
+
+        <button id="reset-button" class="reset-button">Reset Game</button>
+
+        <div id="winner-modal" class="modal">
+            <div class="modal-content">
+                <h2 id="winner-text"></h2>
+                <button id="play-again" class="reset-button">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
